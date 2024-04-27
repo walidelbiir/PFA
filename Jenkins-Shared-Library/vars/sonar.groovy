@@ -1,5 +1,5 @@
 def declareScanner(String scannername) {
-    return tool scannername
+    return tool "${scannername}"
 }
 
 def executeAnalysis(String scannername , String sonarServerName , String sonar_properties_path) {
