@@ -1,3 +1,5 @@
+@Library('PFA_Library') _
+
 pipeline{
     agent any
     tools{nodejs "NodeJS 18.14.2"}
@@ -5,23 +7,45 @@ pipeline{
 
         stage('Git Checkout') {
             steps {    
-                git branch: 'main', credentialsId:'Github_Walid_Credentials', url: 'https://github.com/walidelbiir/PFA_BackEnd_App.git'
+                script {
+                    git.checkout('Github_Walid_Credentials' , "https://github.com/walidelbiir/PFA_BackEnd_App.git")
+                }
             }
         }
         stage("Installing Dependencies"){
             steps{
-                sh 'npm i'
+                script {
+                    npm.install_dependencies()
+                }
             }
         }
         stage("Installing Tests Dependencies"){
             steps {
-                sh 'npm i --save-dev chai chai-http mocha sinon'
-                sh 'npm i --save-dev mongodb-memory-server --ignore-scripts'
+                script {
+                    npm.install_backend_test_dependencies()
+                }
             }
         }
         stage("Testing") {
             steps {
-                sh 'NODE_ENV=test npm test ./tests'
+                script{
+                    npm.backend_test()
+                }
+            }
+        }
+        stage("SonarQube Analysis") {
+            steps {
+                script {
+                    sonar.executeAnalysis('sonarqube_scanner' , 'sonraqube_server' , './sonar-project.properties')
+                }
+            }
+            
+            post {
+                success {
+                    script {
+                        sonar.qualityGateAnalysis()
+                    }
+                }
             }
         }
         
