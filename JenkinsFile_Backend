@@ -8,7 +8,7 @@ pipeline{
         stage('Git Checkout') {
             steps {    
                 script {
-                    git.checkout('Github_Walid_Credentials' , "https://github.com/walidelbiir/PFA_BackEnd_App.git")
+                    git('Github_Walid_Credentials' , "https://github.com/walidelbiir/PFA_BackEnd_App.git")
                 }
             }
         }
@@ -39,7 +39,7 @@ pipeline{
                     sonar.executeAnalysis('sonarqube_scanner' , 'sonraqube_server' , './sonar-project.properties')
                 }
             }
-            
+
             post {
                 success {
                     script {
