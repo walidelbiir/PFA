@@ -8,7 +8,7 @@ pipeline{
         stage('Git Checkout') {
             steps {    
                 script {
-                    git.checkout(credentials: 'Github_Walid_Credentials' , githubURL: "https://github.com/walidelbiir/PFA_BackEnd_App.git")
+                    github.checkout(credentials: 'Github_Walid_Credentials' , githubURL: "https://github.com/walidelbiir/PFA_BackEnd_App.git")
                 }
             }
         }
