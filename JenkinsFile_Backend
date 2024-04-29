@@ -21,12 +21,12 @@ pipeline{
             post {
                 success {
                     script {
-                        slackNotification.send(channel:"#pfa,walid.elbir" , msg:"Dependencies installed Successfully" , status:"success")
+                        slackNotification.send(channel:"#pfa" , msg:"Dependencies installed Successfully" , status:"success")
                     }
                 }
                 failure {
                      script {
-                        slackNotification.send(channel:"#pfa,walid.elbir" ,msg: "Failure Installing Dependencies" ,status: "danger")
+                        slackNotification.send(channel:"#pfa" ,msg: "Failure Installing Dependencies" ,status: "danger")
                     }
                 }
             }
@@ -40,12 +40,12 @@ pipeline{
             post {
                 success {
                     script {
-                        slackNotification.send(channel:"#pfa,walid.elbir" ,message: "Testing Dependencies Installed successfully" ,status: "success")
+                        slackNotification.send(channel:"#pfa" ,message: "Testing Dependencies Installed successfully" ,status: "success")
                     }
                 }
                 failure {
                      script {
-                        slackNotification.send(channel:"#pfa,walid.elbir" ,message: "Failure Installing Testing Dependencies" ,status: "danger")
+                        slackNotification.send(channel:"#pfa" ,message: "Failure Installing Testing Dependencies" ,status: "danger")
                     }
                 }
             }
@@ -59,12 +59,12 @@ pipeline{
             post {
                 success {
                     script {
-                        slackNotification.send(channel:"#pfa,walid.elbir" ,message: "Testing Done successfully" ,status: "success")
+                        slackNotification.send(channel:"#pfa" ,message: "Testing Done successfully" ,status: "success")
                     }
                 }
                 failure {
                      script {
-                        slackNotification.send(channel:"#pfa,walid.elbir" ,message: "Failure Testing" ,status: "danger")
+                        slackNotification.send(channel:"#pfa" ,message: "Failure Testing" ,status: "danger")
                     }
                 }
             }
@@ -89,12 +89,12 @@ pipeline{
     post {
                 success {
                     script {
-                        slackNotification.send(channel:"#pfa,walid.elbir" ,message: "Pipeline Terminated Successfully" ,status: "success")
+                        slackNotification.send(channel:"#pfa" ,message: "Pipeline Terminated Successfully" ,status: "success")
                     }
                 }
                 failure {
                      script {
-                        slackNotification.send(channel:"#pfa,walid.elbir" ,message: "Pipeline Failed" ,status: "danger")
+                        slackNotification.send(channel:"#pfa" ,message: "Pipeline Failed" ,status: "danger")
                     }
                 }
             }
