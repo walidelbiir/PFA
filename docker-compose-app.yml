@@ -1,0 +1,48 @@
+version: '3.1'
+
+volumes:
+  mongo_volume:
+  mongo_config_volume:
+  prometheus_data:
+
+  
+services:
+
+  mongo:
+    image: mongo
+    volumes:
+      - mongo_volume:/data/db
+      - mongo_config_volume:/data/configdb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      ME_CONFIG_BASICAUTH: false
+
+  backend:
+    image: welldone_backend
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+
+  frontend:
+    image: welldone_frontend
+    ports:
+      - "3000:3000"
+  
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - prometheus_data:/prometheus
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"

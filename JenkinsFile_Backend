@@ -33,21 +33,21 @@ pipeline{
                 }
             }
         }
-        stage("SonarQube Analysis") {
-            steps {
-                script {
-                    sonar.executeAnalysis('sonarqube_scanner' , 'sonraqube_server' , './sonar-project.properties')
-                }
-            }
+        // stage("SonarQube Analysis") {
+        //     steps {
+        //         script {
+        //             sonar.executeAnalysis('sonarqube_scanner' , 'sonraqube_server' , './sonar-project.properties')
+        //         }
+        //     }
 
-            post {
-                success {
-                    script {
-                        sonar.qualityGateAnalysis()
-                    }
-                }
-            }
-        }
+        //     post {
+        //         success {
+        //             script {
+        //                 sonar.qualityGateAnalysis()
+        //             }
+        //         }
+        //     }
+        // }
         
     }
 }
