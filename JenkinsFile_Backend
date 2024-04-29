@@ -21,7 +21,7 @@ pipeline{
             post {
                 success {
                     script {
-                        slackNotification.send(channel:"#pfa" , msg:"Dependencies installed Successfully" , status:"success")
+                        slackNotification.send(channel:"#pfa" , msg:"Dependencies installed Successfully" , status:"good")
                     }
                 }
                 failure {
@@ -40,12 +40,12 @@ pipeline{
             post {
                 success {
                     script {
-                        slackNotification.send(channel:"#pfa" ,message: "Testing Dependencies Installed successfully" ,status: "success")
+                        slackNotification.send(channel:"#pfa" ,msg: "Testing Dependencies Installed successfully" ,status: "good")
                     }
                 }
                 failure {
                      script {
-                        slackNotification.send(channel:"#pfa" ,message: "Failure Installing Testing Dependencies" ,status: "danger")
+                        slackNotification.send(channel:"#pfa" ,msg: "Failure Installing Testing Dependencies" ,status: "danger")
                     }
                 }
             }
@@ -59,12 +59,12 @@ pipeline{
             post {
                 success {
                     script {
-                        slackNotification.send(channel:"#pfa" ,message: "Testing Done successfully" ,status: "success")
+                        slackNotification.send(channel:"#pfa" ,msg: "Testing Done successfully" ,status: "good")
                     }
                 }
                 failure {
                      script {
-                        slackNotification.send(channel:"#pfa" ,message: "Failure Testing" ,status: "danger")
+                        slackNotification.send(channel:"#pfa" ,msg: "Failure Testing" ,status: "danger")
                     }
                 }
             }
@@ -89,12 +89,12 @@ pipeline{
     post {
                 success {
                     script {
-                        slackNotification.send(channel:"#pfa" ,message: "Pipeline Terminated Successfully" ,status: "success")
+                        slackNotification.send(channel:"#pfa" ,msg: "Pipeline Terminated Successfully" ,status: "good")
                     }
                 }
                 failure {
                      script {
-                        slackNotification.send(channel:"#pfa" ,message: "Pipeline Failed" ,status: "danger")
+                        slackNotification.send(channel:"#pfa" ,msg: "Pipeline Failed" ,status: "danger")
                     }
                 }
             }
