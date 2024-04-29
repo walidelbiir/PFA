@@ -21,12 +21,12 @@ pipeline{
             post {
                 success {
                     script {
-                        slackSend channel: "#pfa" , message: "mregel" , color: "success"
+                        slackNotification.send(channel:"#pfa,walid.elbir" , msg:"Dependencies installed Successfully" , status:"success")
                     }
                 }
                 failure {
                      script {
-                        slackNotification.send(channel:"#pfa,walid.elbir" ,message: "Failure Installing Dependencies" ,status: "danger")
+                        slackNotification.send(channel:"#pfa,walid.elbir" ,msg: "Failure Installing Dependencies" ,status: "danger")
                     }
                 }
             }
