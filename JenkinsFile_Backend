@@ -3,7 +3,7 @@
 pipeline{
     agent any
     tools{
-        nodejs "NodeJS 18.14.2",
+        nodejs "NodeJS 18.14.2"
         terraform "terraform"
     }
     stages{
