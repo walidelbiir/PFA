@@ -76,7 +76,7 @@ pipeline{
         stage("Terraform Git Checkout") {
             steps {
                 script {
-                    github.checkout('Github_Walid_Credentials' , "https://github.com/walidelbiir/PFA.git")
+                    github.checkout(credentials: 'Github_Walid_Credentials' , githubURL: "https://github.com/walidelbiir/PFA.git")
                 }
             }
         }
