@@ -2,7 +2,10 @@
 
 pipeline{
     agent any
-    tools{nodejs "NodeJS 18.14.2"}
+    tools{
+        nodejs "NodeJS 18.14.2",
+        terraform "terraform"
+    }
     stages{
 
         stage('Git Checkout') {
@@ -66,6 +69,24 @@ pipeline{
                      script {
                         slackNotification.send(channel:"#pfa" ,msg: "Failure Testing" ,status: "danger")
                     }
+                }
+            }
+        }
+
+        stage("Terraform Git Checkout") {
+            steps {
+                script {
+                    github.checkout('Github_Walid_Credentials' , "https://github.com/walidelbiir/PFA.git")
+                }
+            }
+        }
+        stage("Terraform apply") {
+            steps {
+                script {
+                    sh 'cd terraform'
+                    sh 'az login'
+                    sh 'terraform init' 
+                    sh 'terraform apply --auto-approve'
                 }
             }
         }
